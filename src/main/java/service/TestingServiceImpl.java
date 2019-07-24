@@ -11,6 +11,7 @@ import static java.lang.String.format;
 
 public class TestingServiceImpl implements TestingService {
     private QuestionDao dao;
+    private int numberOfTrueAnswer = 0;
 
     public TestingServiceImpl(QuestionDao dao) {
         this.dao = dao;
@@ -27,12 +28,16 @@ public class TestingServiceImpl implements TestingService {
             System.out.println(format("Тестирование студента: %s %s", firstName, lastName));
             List<Questionnaire> records = dao.receiveQuestions();
             for (Questionnaire questionnaire : records) {
-                System.out.println(questionnaire.getQuestion());
+                System.out.println(format("\n%s", questionnaire.getQuestion()));
                 String[] answers = questionnaire.getAnswers();
-                System.out.println(format("Варианты ответа:\na) %s b) %s c) %s\n", answers[0], answers[1], answers[2]));
+                System.out.println(format("Варианты ответа:\n1) %s 2) %s 3) %s\n", answers[0], answers[1], answers[2]));
                 System.out.println("Ваш ответ: ");
-                in.nextLine();
+                int indexAnswer = in.nextInt();
+                if (answers[indexAnswer - 1].equals(questionnaire.getCorrectAnswer())) {
+                    numberOfTrueAnswer++;
+                }
             }
+            System.out.println(format("\nКоличество правильных ответов %s из 5.", numberOfTrueAnswer));
         } catch (IOException e) {
             throw new Exception("Не удалось обработать файл.", e);
         }
