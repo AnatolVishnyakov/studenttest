@@ -5,6 +5,6 @@ import domain.Questionnaire;
 import java.io.IOException;
 import java.util.List;
 
-public interface QuestionDao {
+public interface IQuestionDao {
     List<Questionnaire> receiveQuestions() throws IOException;
 }

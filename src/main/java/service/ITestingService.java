@@ -1,5 +1,5 @@
 package service;
 
-public interface TestingService {
+public interface ITestingService {
     void checkStudent() throws Exception;
 }

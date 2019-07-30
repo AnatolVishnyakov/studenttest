@@ -1,7 +1,10 @@
 package service;
 
-import dao.QuestionDao;
+import dao.IQuestionDao;
 import domain.Questionnaire;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,11 +12,14 @@ import java.util.Scanner;
 
 import static java.lang.String.format;
 
-public class TestingServiceImpl implements TestingService {
-    private QuestionDao dao;
+@Service
+public class TestingServiceImpl implements ITestingService {
+    private IQuestionDao dao;
     private int numberOfTrueAnswer = 0;
+    @Autowired
+    private MessageSource messageSource;
 
-    public TestingServiceImpl(QuestionDao dao) {
+    public TestingServiceImpl(IQuestionDao dao) {
         this.dao = dao;
     }
 
@@ -21,6 +27,8 @@ public class TestingServiceImpl implements TestingService {
         Scanner in = new Scanner(System.in);
         try {
             System.out.print("Введите фамилию: ");
+            // TODO localization
+//            System.out.print(messageSource.getMessage("input.last_name", null, new Locale("ru", "RU")));
             String firstName = in.nextLine();
             System.out.print("Введите имя: ");
             String lastName = in.nextLine();
@@ -32,9 +40,13 @@ public class TestingServiceImpl implements TestingService {
                 String[] answers = questionnaire.getAnswers();
                 System.out.println(format("Варианты ответа:\n1) %s 2) %s 3) %s\n", answers[0], answers[1], answers[2]));
                 System.out.println("Ваш ответ: ");
-                int indexAnswer = in.nextInt();
-                if (answers[indexAnswer - 1].equals(questionnaire.getCorrectAnswer())) {
-                    numberOfTrueAnswer++;
+                try {
+                    int indexAnswer = in.nextInt();
+                    if (answers[indexAnswer - 1].equals(questionnaire.getCorrectAnswer())) {
+                        numberOfTrueAnswer++;
+                    }
+                } catch (ArrayIndexOutOfBoundsException exc) {
+                    System.out.println("Не корректный ввод.");
                 }
             }
             System.out.println(format("\nКоличество правильных ответов %s из 5.", numberOfTrueAnswer));

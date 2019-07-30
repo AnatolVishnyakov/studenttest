@@ -1,17 +1,20 @@
 package dao;
 
-import org.junit.Test;
+import domain.Questionnaire;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class QuestionDaoImplTest {
-    private final String pathCSVFile = "AnswerTheQuestions.csv";
 
     @Test
     public void receiveQuestions() throws IOException {
-        QuestionDao questionDao = new QuestionDaoImpl(pathCSVFile);
-        assertEquals(5, questionDao.receiveQuestions().size());
+        String pathCSVFile = "AnswerTheQuestions.csv";
+        IQuestionDao questionDao = new QuestionDaoImpl(pathCSVFile);
+        List<Questionnaire> actual = questionDao.receiveQuestions();
+        assertEquals(5, actual.size());
     }
 }

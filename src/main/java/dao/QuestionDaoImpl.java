@@ -1,6 +1,7 @@
 package dao;
 
 import domain.Questionnaire;
+import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,7 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class QuestionDaoImpl implements QuestionDao {
+@Repository
+public class QuestionDaoImpl implements IQuestionDao {
     private static final String SEPARATOR = ";";
     private final File inputCSVFile;
 

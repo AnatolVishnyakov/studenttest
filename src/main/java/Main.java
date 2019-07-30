@@ -1,10 +1,11 @@
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import service.TestingService;
+import config.AppConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import service.ITestingService;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
-        TestingService service = context.getBean(TestingService.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ITestingService service = context.getBean(ITestingService.class);
         service.checkStudent();
     }
 }
