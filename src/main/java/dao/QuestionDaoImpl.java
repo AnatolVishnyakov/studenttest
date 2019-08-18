@@ -22,7 +22,9 @@ public class QuestionDaoImpl implements QuestionDao {
     public List<Questionnaire> receiveQuestions() throws IOException {
         List<Questionnaire> records = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(inputCSVFile))) {
-            String record = bufferedReader.readLine(); // skip header
+            bufferedReader.readLine(); // skip header
+
+            String record;
             while ((record = bufferedReader.readLine()) != null) {
                 String[] data = record.split(SEPARATOR);
                 String question = data[0];
