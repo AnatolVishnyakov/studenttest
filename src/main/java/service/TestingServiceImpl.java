@@ -3,21 +3,25 @@ package service;
 import dao.IQuestionDao;
 import domain.Questionnaire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 import static java.lang.String.format;
 
 @Service
 public class TestingServiceImpl implements ITestingService {
-    private IQuestionDao dao;
-    private int numberOfTrueAnswer = 0;
+    @Value("${application.locale}")
+    private String locale;
     @Autowired
     private MessageSource messageSource;
+    private IQuestionDao dao;
+    private int numberOfTrueAnswer = 0;
 
     public TestingServiceImpl(IQuestionDao dao) {
         this.dao = dao;
@@ -26,14 +30,12 @@ public class TestingServiceImpl implements ITestingService {
     public void checkStudent() throws Exception {
         Scanner in = new Scanner(System.in);
         try {
-            System.out.print("Введите фамилию: ");
-            // TODO localization
-//            System.out.print(messageSource.getMessage("input.last_name", null, new Locale("ru", "RU")));
+            System.out.println(messageSource.getMessage("label_last_name", null, new Locale(locale)));
             String firstName = in.nextLine();
-            System.out.print("Введите имя: ");
+            System.out.println(messageSource.getMessage("label_first_name", null, new Locale(locale)));
             String lastName = in.nextLine();
 
-            System.out.println(format("Тестирование студента: %s %s", firstName, lastName));
+            System.out.println(format("%s %s %s", messageSource.getMessage("label_testing_student", null, new Locale(locale)), firstName, lastName));
             List<Questionnaire> records = dao.receiveQuestions();
             for (Questionnaire questionnaire : records) {
                 System.out.println(format("\n%s", questionnaire.getQuestion()));

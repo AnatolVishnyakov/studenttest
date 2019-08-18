@@ -27,7 +27,7 @@ public class AppConfig {
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
         ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
-        ms.setBasename("/i18n/bundle");
+        ms.setBasename("/localization/bundle");
         ms.setDefaultEncoding("UTF-8");
         return ms;
     }
