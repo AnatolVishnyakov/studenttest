@@ -49,7 +49,9 @@ public class TestingServiceImpl implements ITestingService {
                     System.out.println("Не корректный ввод.");
                 }
             }
-            System.out.println(format("\nКоличество правильных ответов %s из 5.", numberOfTrueAnswer));
+
+            int percentage = (int) (((double) numberOfTrueAnswer / records.size()) * 100);
+            System.out.println(format("\nКоличество правильных ответов %s из 5.\nРезультат: %s%%", numberOfTrueAnswer, percentage));
         } catch (IOException e) {
             throw new Exception("Не удалось обработать файл.", e);
         }
