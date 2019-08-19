@@ -40,8 +40,9 @@ public class TestingServiceImpl implements ITestingService {
             for (Questionnaire questionnaire : records) {
                 System.out.println(format("\n%s", questionnaire.getQuestion()));
                 String[] answers = questionnaire.getAnswers();
-                System.out.println(format("Варианты ответа:\n1) %s 2) %s 3) %s\n", answers[0], answers[1], answers[2]));
-                System.out.println("Ваш ответ: ");
+                System.out.println(format("%s\n1) %s 2) %s 3) %s\n", messageSource.getMessage("label_answer_type", null, new Locale(locale)),
+                        answers[0], answers[1], answers[2]));
+                System.out.println(messageSource.getMessage("label_your_answer", null, new Locale(locale)));
                 try {
                     int indexAnswer = in.nextInt();
                     if (answers[indexAnswer - 1].equals(questionnaire.getCorrectAnswer())) {
@@ -53,7 +54,7 @@ public class TestingServiceImpl implements ITestingService {
             }
 
             int percentage = (int) (((double) numberOfTrueAnswer / records.size()) * 100);
-            System.out.println(format("\nКоличество правильных ответов %s из 5.\nРезультат: %s%%", numberOfTrueAnswer, percentage));
+            System.out.println(messageSource.getMessage("label_result", new Integer[]{numberOfTrueAnswer, records.size(), percentage}, new Locale(locale)));
         } catch (IOException e) {
             throw new Exception("Не удалось обработать файл.", e);
         }
