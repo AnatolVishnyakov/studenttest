@@ -1,6 +1,6 @@
-package dao;
+package com.application.studenttest.dao;
 
-import domain.Questionnaire;
+import com.application.studenttest.domain.Questionnaire;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;

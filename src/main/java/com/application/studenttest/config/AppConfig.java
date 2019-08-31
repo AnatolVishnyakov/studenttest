@@ -1,14 +1,14 @@
-package config;
+package com.application.studenttest.config;
 
-import dao.IQuestionDao;
-import dao.QuestionDaoImpl;
+import com.application.studenttest.dao.IQuestionDao;
+import com.application.studenttest.dao.QuestionDaoImpl;
+import com.application.studenttest.service.ITestingService;
+import com.application.studenttest.service.TestingServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import service.ITestingService;
-import service.TestingServiceImpl;
 
 @Configuration
 @PropertySource("classpath:application.properties")

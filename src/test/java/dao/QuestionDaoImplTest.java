@@ -1,7 +1,9 @@
 package dao;
 
-import domain.Questionnaire;
-import org.junit.jupiter.api.Test;
+import com.application.studenttest.dao.IQuestionDao;
+import com.application.studenttest.dao.QuestionDaoImpl;
+import com.application.studenttest.domain.Questionnaire;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;

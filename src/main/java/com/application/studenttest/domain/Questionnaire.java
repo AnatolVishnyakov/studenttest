@@ -1,4 +1,4 @@
-package domain;
+package com.application.studenttest.domain;
 
 public class Questionnaire {
     // вопрос

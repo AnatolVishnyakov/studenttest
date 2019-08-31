@@ -1,7 +1,7 @@
-package service;
+package com.application.studenttest.service;
 
-import dao.IQuestionDao;
-import domain.Questionnaire;
+import com.application.studenttest.dao.IQuestionDao;
+import com.application.studenttest.domain.Questionnaire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
