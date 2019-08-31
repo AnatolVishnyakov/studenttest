@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
-public class AppConfig {
+public class ApplicationConfig {
     @Autowired
-    private ConfigurationPropertiesApplication properties;
+    private ApplicationProperties properties;
 
     @Bean
     IQuestionDao questionDao() {

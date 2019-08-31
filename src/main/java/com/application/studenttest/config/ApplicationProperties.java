@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties("application")
-public class ConfigurationPropertiesApplication {
+public class ApplicationProperties {
     private String locale;
     private String fileName;
 

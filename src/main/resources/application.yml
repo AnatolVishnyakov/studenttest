@@ -1,5 +1,5 @@
 # ru - russian
 # en - english
-application:
+settings-test:
   locale: ru
   file: AnswerTheQuestions_(ru).csv
