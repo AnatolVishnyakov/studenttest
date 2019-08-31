@@ -1,0 +1,5 @@
+# ru - russian
+# en - english
+application:
+  locale: ru
+  file: AnswerTheQuestions_(ru).csv
